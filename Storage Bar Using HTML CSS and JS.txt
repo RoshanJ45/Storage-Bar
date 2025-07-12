@@ -1,0 +1,107 @@
+<html>
+<body>
+    <style>
+        body {
+height: 100vh;
+margin: 0;
+font-family: sans-serif;
+background: #f4f4f4;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.storage-widget {
+width: 350px;
+background: white;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+h3 {
+margin-bottom: 10px;
+color: #333;
+}
+.bar-container {
+position: relative;
+height: 20px;
+border-radius: 10px;
+background: linear-gradient(
+to right,
+green 0%,
+green 50%,
+orange 50%,
+orange 85%,
+red 85%,
+red 100%
+);
+overflow: hidden;
+margin-bottom: 10px;
+}
+.bar-mask {
+position: absolute;
+height: 100%;
+width: 100%;
+background: #eee;
+right: 0;
+top: 0;
+transition: width 0.8s ease;
+}
+.storage-text {
+text-align: right;
+font-weight: bold;
+margin-bottom: 10px;
+color: #333;
+}
+.legend {
+display: flex;
+justify-content: space-between;
+font-size: 13px;
+margin-top: 10px;
+color: #555;
+}
+.legend-item {
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+}
+.green { background: green; }
+.orange { background: orange; }
+.red { background: red; }
+    </style>
+<div class="storage-widget">
+<h3>Storage Usage</h3>
+<div class="bar-container">
+<div class="bar-mask" id="barMask"></div>
+</div>
+<div class="storage-text" id="storageText">0 GB of 100 GB used</div>
+<div class="legend">
+<div class="legend-item">
+<div class="dot green"></div>
+<span>0 - 50% Safe</span>
+</div>
+<div class="legend-item">
+<div class="dot orange"></div>
+<span>51 - 85% Warning</span>
+</div>
+<div class="legend-item">
+<div class="dot red"></div>
+<span>86 - 100% Full</span>
+</div>
+</div>
+</div>
+<script>
+    const used = 90;
+const total = 100;
+const percent = (used / total) * 100;
+const barMask = document.getElementById('barMask');
+const storageText = document.getElementById('storageText');
+barMask.style.width = (100 - percent) + '%';
+storageText.textContent = `${used} GB of ${total} GB used`;
+</script>
+</body>
+</html>
